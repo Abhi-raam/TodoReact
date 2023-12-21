@@ -1,4 +1,5 @@
 import React from 'react'
+import { FaXmark } from 'react-icons/fa6'
 
 function Active({ todos, setTodos }) {
     return (
@@ -8,7 +9,7 @@ function Active({ todos, setTodos }) {
                 {todos.map((obj) => {
                     if (!obj.status) {
                         return (
-                            <div className="flex justify-between bg-stone-200 m-2 rounded w-auto p-1">
+                            <div className="flex justify-between bg-stone-200 m-5 rounded w-auto p-1">
                                 <input onChange={(e) => {
                                     setTodos(todos.filter(obj2 => {
                                         if (obj2.id === obj.id) {
@@ -18,11 +19,11 @@ function Active({ todos, setTodos }) {
                                     }))
                                 }} type="checkbox" className="mr-3 cursor-pointer flex justify-start" name="" id="" />
                                 <p className="text-stone-900 font-semibold">{obj.text}</p>
-                                <i onClick={() => {
-                                    setTodos(todos.filter(obj2 => {
-                                        return obj2.id !== obj.id
-                                    }))
-                                }} className="fa-sharp p-1.5 mx-5  cursor-pointer hover:bg-gray-600 hover:text-white rounded fa-solid fa-xmark"></i>
+                                <FaXmark onClick={() => {
+                                setTodos(todos.filter(obj2 => {
+                                    return obj2.id !== obj.id
+                                }))
+                            }} className=" mx-5 text-lg m-1  cursor-pointer hover:bg-gray-600 hover:text-white rounded " />
                             </div>
                         )
                     }

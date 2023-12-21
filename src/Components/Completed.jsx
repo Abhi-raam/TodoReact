@@ -1,4 +1,5 @@
 import React from 'react'
+import { FaXmark } from 'react-icons/fa6'
 
 function Completed({ todos, setTodos }) {
     return (
@@ -8,14 +9,24 @@ function Completed({ todos, setTodos }) {
                 {todos.map((obj) => {
                     if (obj.status) {
                         return (
-                            <div className="flex justify-between  bg-stone-200 m-2 rounded w-auto p-1">
-                                <input defaultChecked  type="checkbox" className="mr-3 flex cursor-pointer justify-start" name="" id="" />
-                                <del><p className="text-stone-900 font-semibold">{obj.text}</p></del>
-                                <i onClick={() => {
-                                    setTodos(todos.filter(obj2 => {
-                                        return obj2.id !== obj.id
-                                    }))
-                                }} className="fa-sharp p-1.5 mx-5 cursor-pointer hover:bg-gray-600 hover:text-white rounded fa-solid fa-xmark"></i>
+                            <div className=''>
+                                <div className="flex justify-between  bg-stone-200 m-5 rounded  p-1">
+                                    <input defaultChecked onChange={(e) => {
+                                        setTodos(todos.filter(obj2 => {
+                                            if (obj2.id === obj.id) {
+                                                obj2.status = e.target.checked
+                                                console.log(obj.status);
+                                            }
+                                            return obj2
+                                        }))
+                                    }} value={obj.status} type="checkbox" className="mr-3 cursor-pointer flex justify-start " name="" id="" />
+                                    <del><p className="text-stone-900 font-semibold">{obj.text}</p></del>
+                                    <FaXmark onClick={() => {
+                                        setTodos(todos.filter(obj2 => {
+                                            return obj2.id !== obj.id
+                                        }))
+                                    }} className=" mx-5 text-lg m-1  cursor-pointer hover:bg-gray-600 hover:text-white rounded " />
+                                </div>
                             </div>
                         )
                     }

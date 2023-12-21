@@ -3,12 +3,14 @@ import Footer from "./Components/Footer";
 import Completed from "./Components/Completed";
 import Active from "./Components/Active";
 import AllTodo from "./Components/AllTodo";
+import { FaCheck,FaListCheck } from "react-icons/fa6";
 
 function App() {
   const [todo, setTodo] = useState('')
   const [todos, setTodos] = useState([])
   function addTodos() {
     setTodos([...todos, { id: Date.now(), text: todo, status: false }])
+    console.log(todos);
     setTodo("")
   }
   return (
@@ -16,7 +18,8 @@ function App() {
       <div className="  py-20 text-3xl text-slate-200 text-center  font-semibold">
         <div className=" cursor-pointer flex justify-center">
           <h1 className="  mr-6">TODO LIST</h1>
-          <i className="animate-bounce delay-1000 transition duration-1000 fa-sharp py-5 fa-lg fa-solid fa-list-check"></i>
+          <FaListCheck className="animate-bounce delay-1000 transition duration-900 text-4xl"/>
+          {/* <i className="animate-bounce delay-1000 transition duration-1000 fa-sharp py-5 fa-lg fa-solid fa-list-check"></i> */}
         </div>
       </div>
       <div className=" text-center">
@@ -27,7 +30,10 @@ function App() {
             setTodo("");
           }
         }))} type="text" placeholder=" Add Todos. . . " className="rounded pl-1 sm:w-96 w-72 h-9 outline-none" />
-        <button onClick={addTodos} className="bg-sky-600 rounded h-9 w-9"><i className="fa-sharp fa-solid fa-check"></i></button>
+        
+        <button onClick={addTodos} className="bg-sky-600 p-[10px] rounded-md">
+          <FaCheck className="text-white"/>
+          </button>
       </div>
 
 
